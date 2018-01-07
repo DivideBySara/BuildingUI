@@ -8,6 +8,36 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid.Resources>
+            <!-- A storyboard can be a grid resource -->
+            <Storyboard x:Name="ColorPulse">
+                <ColorAnimationUsingKeyFrames Storyboard.TargetName="RFill" Storyboard.TargetProperty="(SolidColorBrush.Color)" Duration="0:0:6" RepeatBehavior="Forever" >
+                    <DiscreteColorKeyFrame KeyTime="0:0:0" Value="Red"/>
+                    <LinearColorKeyFrame KeyTime="0:0:2" Value="Green"/>
+                    <EasingColorKeyFrame KeyTime="0:0:4" Value="Blue">
+                        <EasingColorKeyFrame.EasingFunction>
+                            <PowerEase EasingMode="EaseIn"/>
+                        </EasingColorKeyFrame.EasingFunction>
+                    </EasingColorKeyFrame>
+                </ColorAnimationUsingKeyFrames>
+            </Storyboard>
+        </Grid.Resources>
+        
+        <!-- Comment/Uncomment to put the storyboard in the grid directly, not as a resource -->
+        <!--<Grid.Triggers>
+            <EventTrigger>
+                
+            </EventTrigger>
+        </Grid.Triggers>-->
+        <Rectangle x:Name="R">
+            <Rectangle.Fill>
+                <SolidColorBrush x:Name="RFill" Color="Red"/>
+            </Rectangle.Fill>
+            <Rectangle.RenderTransform>
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        
+        <Button Content="Click for animation of a rectangle" FontSize="50" Click="Button_Click"/>
     </Grid>
 </Page>
